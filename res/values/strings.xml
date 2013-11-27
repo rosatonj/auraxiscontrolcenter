@@ -41,5 +41,7 @@
     <string name="content_not_available">Content currently not available.</string>
     <string name="link_forum">http://acc.cesarandres.com/</string>
     <string name="link_donations">http://cesarandres.com/</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

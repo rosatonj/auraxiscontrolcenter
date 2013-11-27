@@ -34,6 +34,16 @@
             android:name="com.cesarandres.ps2link.ActivityAbout"
             android:theme="@style/PS2ThemeDialog" >
         </activity>
+
+        <receiver android:name="com.cesarandres.ps2link.widgets.ProfileWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/profile_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

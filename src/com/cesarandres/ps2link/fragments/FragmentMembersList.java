@@ -37,6 +37,7 @@ import com.cesarandres.ps2link.soe.SOECensus.Verb;
 import com.cesarandres.ps2link.soe.content.Member;
 import com.cesarandres.ps2link.soe.content.Outfit;
 import com.cesarandres.ps2link.soe.content.response.Outfit_member_response;
+import com.cesarandres.ps2link.soe.util.Collections;
 import com.cesarandres.ps2link.soe.util.Collections.PS2Collection;
 import com.cesarandres.ps2link.soe.util.QueryString;
 import com.cesarandres.ps2link.soe.util.QueryString.QueryCommand;
@@ -180,9 +181,11 @@ public class FragmentMembersList extends BaseFragment {
 				@Override
 				public void onResponse(Outfit_member_response response) {
 					try {
+						ArrayList<Member> memberList = response.getOutfit_list().get(0).getMembers();
+						java.util.Collections.sort(memberList);
 						UpdateMembers task = new UpdateMembers();
 						taskList.add(task);
-						task.execute(response.getOutfit_list().get(0).getMembers());
+						task.execute(memberList);
 					} catch (Exception e) {
 						Toast.makeText(getActivity(), "Error retrieving data", Toast.LENGTH_SHORT).show();
 					}

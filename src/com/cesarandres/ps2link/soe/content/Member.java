@@ -1,8 +1,10 @@
 package com.cesarandres.ps2link.soe.content;
 
+import java.util.Comparator;
+
 import com.cesarandres.ps2link.soe.content.character.Name;
 
-public class Member {
+public class Member implements Comparable<Member>{
 	private String character_id;
 	private String online_status;
 	private String rank;
@@ -56,5 +58,11 @@ public class Member {
 
 	public void setCharacter(CharacterProfile character) {
 		this.character = character;
+	}
+
+	@Override
+	public int compareTo(Member another) {
+		return this.getName().getFirst_lower().compareTo(another.getName().getFirst_lower());
+
 	}
 }
