@@ -22,6 +22,7 @@ import com.cesarandres.ps2link.fragments.FragmentMap;
 import com.cesarandres.ps2link.fragments.FragmentMembersList;
 import com.cesarandres.ps2link.fragments.FragmentOutfitList;
 import com.cesarandres.ps2link.fragments.FragmentProfileList;
+import com.cesarandres.ps2link.fragments.FragmentProfilePager;
 import com.cesarandres.ps2link.fragments.FragmentServer;
 import com.cesarandres.ps2link.fragments.FragmentServerList;
 import com.cesarandres.ps2link.fragments.FragmentTwitter;
@@ -116,7 +117,7 @@ public class ActivityContainerSingle extends BaseActivity implements FragmentCal
 
         if(tablet){
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            BaseFragment newFragment = getFragmentByMode(getActivityMode());
+            BaseFragment newFragment = getFragmentByMode(id);
             if(newFragment != null){
                 transaction.replace(R.id.activityFrameLayout, newFragment);
                 //transaction.addToBackStack(null);
@@ -172,7 +173,7 @@ public class ActivityContainerSingle extends BaseActivity implements FragmentCal
 
 	private BaseFragment getFragmentByMode(String activityMode) {
 		BaseFragment newFragment = null;
-        switch (ActivityMode.valueOf(getActivityMode())) {
+        switch (ActivityMode.valueOf(activityMode)) {
             case ACTIVITY_ADD_OUTFIT:
                 newFragment = new FragmentAddOutfit();
                 break;
@@ -184,7 +185,6 @@ public class ActivityContainerSingle extends BaseActivity implements FragmentCal
                 break;
             case ACTIVITY_MEMBER_LIST:
                 newFragment = new FragmentMembersList();
-                setData(new ObjectDataSource(this));
                 break;
             case ACTIVITY_OUTFIT_LIST:
                 newFragment = new FragmentOutfitList();
@@ -200,7 +200,6 @@ public class ActivityContainerSingle extends BaseActivity implements FragmentCal
                 break;
             case ACTIVITY_TWITTER:
                 newFragment = new FragmentTwitter();
-                setData(new ObjectDataSource(this));
                 break;
             case ACTIVITY_MAIN_MENU:
                 if(!tablet){
@@ -209,6 +208,9 @@ public class ActivityContainerSingle extends BaseActivity implements FragmentCal
                 break;
             case ACTIVITY_WDS:
                 newFragment = new FragmentWds();
+                break;
+            case ACTIVITY_PROFILE_PAGER:
+                newFragment = new FragmentProfilePager();
                 break;
             default:
                 break;
